@@ -1,0 +1,1026 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>مسجد السنة | منصة رقمية متكاملة</title>
+  <meta name="description" content="منصة مسجد السنة - تسجيل الحلقات والصدقات والعبادة الرقمية" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;700;900&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --primary: #0f7849;
+      --primary-light: #1a9d5a;
+      --primary-dark: #0a5236;
+      --accent: #ffd700;
+      --accent-dark: #cc9900;
+      --bg: #0d1b14;
+      --bg-light: #1a2f26;
+      --bg-lighter: #2a3f38;
+      --text: #e0e0e0;
+      --text-muted: #888;
+      --border: #1a3f2f;
+      --success: #4caf50;
+      --danger: #f44336;
+      --warning: #ff9800;
+      --info: #2196f3;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Cairo', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* Scrollbar Styling */
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: var(--bg-light);
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--primary);
+      border-radius: 5px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--primary-light);
+    }
+
+    /* Navbar */
+    nav {
+      background: linear-gradient(135deg, var(--bg-light) 0%, var(--bg-lighter) 100%);
+      padding: 15px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 2px solid var(--primary);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+    }
+
+    .nav-brand {
+      font-size: 24px;
+      font-weight: 900;
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+
+    .nav-brand span {
+      font-size: 32px;
+    }
+
+    .nav-center {
+      display: flex;
+      gap: 30px;
+      align-items: center;
+    }
+
+    .nav-link {
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 600;
+      position: relative;
+      padding: 8px 0;
+      transition: color 0.3s ease;
+    }
+
+    .nav-link:hover {
+      color: var(--accent);
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 0;
+      height: 2px;
+      background: var(--accent);
+      transition: width 0.3s ease;
+    }
+
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    .nav-right {
+      display: flex;
+      gap: 15px;
+      align-items: center;
+    }
+
+    .btn {
+      padding: 12px 24px;
+      border: none;
+      border-radius: 50px;
+      font-weight: 600;
+      font-family: 'Cairo', sans-serif;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-size: 14px;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+      color: white;
+      box-shadow: 0 4px 15px rgba(15, 120, 73, 0.3);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(15, 120, 73, 0.5);
+    }
+
+    .btn-secondary {
+      background: rgba(255, 215, 0, 0.1);
+      color: var(--accent);
+      border: 2px solid var(--accent);
+    }
+
+    .btn-secondary:hover {
+      background: var(--accent);
+      color: var(--bg);
+    }
+
+    /* Hero Section */
+    .hero {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 50%, var(--primary-dark) 100%);
+      min-height: 600px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      padding: 60px 30px;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      width: 400px;
+      height: 400px;
+      background: rgba(255, 215, 0, 0.1);
+      border-radius: 50%;
+      top: -100px;
+      right: -100px;
+      animation: float 6s ease-in-out infinite;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      width: 300px;
+      height: 300px;
+      background: rgba(255, 215, 0, 0.05);
+      border-radius: 50%;
+      bottom: -50px;
+      left: -50px;
+      animation: float 8s ease-in-out infinite reverse;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(30px); }
+    }
+
+    .hero-content {
+      text-align: center;
+      max-width: 800px;
+      z-index: 2;
+      color: white;
+    }
+
+    .hero-content h1 {
+      font-size: clamp(2.5rem, 8vw, 4rem);
+      font-weight: 900;
+      margin-bottom: 20px;
+      text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    .hero-content p {
+      font-size: 1.3rem;
+      margin-bottom: 30px;
+      opacity: 0.95;
+    }
+
+    .hero-icon {
+      font-size: 80px;
+      margin-bottom: 20px;
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+    }
+
+    /* Container */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 30px;
+    }
+
+    /* Section */
+    section {
+      padding: 80px 0;
+    }
+
+    section h2 {
+      font-size: 2.5rem;
+      font-weight: 900;
+      margin-bottom: 50px;
+      text-align: center;
+      background: linear-gradient(135deg, var(--accent) 0%, var(--primary-light) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* Card Grid */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin-top: 40px;
+    }
+
+    .card {
+      background: linear-gradient(135deg, var(--bg-light) 0%, var(--bg-lighter) 100%);
+      border: 2px solid var(--border);
+      border-radius: 20px;
+      padding: 40px 30px;
+      text-align: center;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.1), transparent);
+      transition: left 0.5s ease;
+    }
+
+    .card:hover::before {
+      left: 100%;
+    }
+
+    .card:hover {
+      border-color: var(--accent);
+      transform: translateY(-8px);
+      box-shadow: 0 15px 40px rgba(15, 120, 73, 0.3);
+    }
+
+    .card-icon {
+      font-size: 50px;
+      margin-bottom: 20px;
+    }
+
+    .card h3 {
+      font-size: 1.5rem;
+      margin-bottom: 15px;
+      color: var(--accent);
+    }
+
+    .card p {
+      color: var(--text-muted);
+      line-height: 1.8;
+    }
+
+    /* Form Section */
+    .form-section {
+      background: linear-gradient(135deg, var(--bg-light) 0%, var(--bg-lighter) 100%);
+      border: 2px solid var(--border);
+      border-radius: 20px;
+      padding: 50px;
+      margin-top: 40px;
+    }
+
+    .form-group {
+      margin-bottom: 25px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 10px;
+      font-weight: 600;
+      color: var(--accent);
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 14px 16px;
+      background: var(--bg);
+      border: 2px solid var(--border);
+      border-radius: 12px;
+      color: var(--text);
+      font-family: 'Cairo', sans-serif;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+    }
+
+    input:focus, select:focus, textarea:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.1);
+    }
+
+    /* Stats Section */
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 25px;
+      margin-top: 40px;
+    }
+
+    .stat-card {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+      padding: 30px;
+      border-radius: 15px;
+      text-align: center;
+      color: white;
+    }
+
+    .stat-number {
+      font-size: 2.5rem;
+      font-weight: 900;
+      margin-bottom: 10px;
+    }
+
+    .stat-label {
+      font-size: 1rem;
+      opacity: 0.9;
+    }
+
+    /* Modal */
+    .modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.8);
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      backdrop-filter: blur(5px);
+    }
+
+    .modal.show {
+      display: flex;
+    }
+
+    .modal-content {
+      background: linear-gradient(135deg, var(--bg-light) 0%, var(--bg-lighter) 100%);
+      border: 2px solid var(--border);
+      border-radius: 20px;
+      padding: 40px;
+      width: min(600px, 95%);
+      max-height: 90vh;
+      overflow-y: auto;
+      position: relative;
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 30px;
+    }
+
+    .modal-header h2 {
+      font-size: 1.8rem;
+      background: none;
+      -webkit-background-clip: unset;
+      -webkit-text-fill-color: unset;
+      background-clip: unset;
+      color: var(--accent);
+      margin: 0;
+    }
+
+    .close-btn {
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      font-size: 28px;
+      cursor: pointer;
+      transition: color 0.3s ease;
+    }
+
+    .close-btn:hover {
+      color: var(--accent);
+    }
+
+    /* Footer */
+    footer {
+      background: var(--bg-light);
+      border-top: 2px solid var(--border);
+      padding: 40px 0;
+      text-align: center;
+      color: var(--text-muted);
+    }
+
+    /* Counter Display */
+    .counter-display {
+      font-size: 3rem;
+      font-weight: 900;
+      color: var(--accent);
+      margin: 20px 0;
+      text-shadow: 0 0 20px rgba(255, 215, 0, 0.2);
+    }
+
+    /* Success Message */
+    .message {
+      padding: 15px 20px;
+      border-radius: 10px;
+      margin-top: 15px;
+      display: none;
+      font-weight: 600;
+    }
+
+    .message.success {
+      background: rgba(76, 175, 80, 0.2);
+      color: var(--success);
+      display: block;
+    }
+
+    .message.error {
+      background: rgba(244, 67, 54, 0.2);
+      color: var(--danger);
+      display: block;
+    }
+
+    /* Animations */
+    .slide-in {
+      animation: slideIn 0.6s ease-out;
+    }
+
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      nav {
+        flex-direction: column;
+        gap: 15px;
+      }
+
+      .nav-center {
+        flex-direction: column;
+        gap: 15px;
+        width: 100%;
+      }
+
+      .hero {
+        min-height: 400px;
+      }
+
+      section {
+        padding: 50px 0;
+      }
+
+      section h2 {
+        font-size: 2rem;
+      }
+
+      .form-section {
+        padding: 30px 20px;
+      }
+
+      .container {
+        padding: 0 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav>
+    <a href="#" class="nav-brand">
+      <span>🕌</span>
+      <div>
+        <div>مسجد السنة</div>
+        <div style="font-size: 11px; color: var(--text-muted);">حي الصحابة</div>
+      </div>
+    </a>
+
+    <div class="nav-center">
+      <a href="#register" class="nav-link">التسجيل</a>
+      <a href="#tasbih" class="nav-link">المسبحة</a>
+      <a href="#donations" class="nav-link">الصدقات</a>
+      <a href="#about" class="nav-link">عن المسجد</a>
+    </div>
+
+    <div class="nav-right">
+      <button class="btn btn-secondary" onclick="openLoginModal()">🔐 الشيخ</button>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <div class="hero-icon">🕌</div>
+      <h1>مسجد السنة</h1>
+      <p>منصة رقمية متكاملة لتعليم القرآن والعبادة</p>
+      <p style="font-size: 1rem; opacity: 0.8;">حي الصحابة • طريق الدعوة الإسلامية • طرابلس</p>
+      <div style="margin-top: 30px;">
+        <button class="btn btn-primary" onclick="document.getElementById('register').scrollIntoView()" style="margin: 10px;">📝 سجل الآن</button>
+        <button class="btn btn-secondary" onclick="openDonationModal()" style="margin: 10px;">🤲 تبرع</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section id="about">
+    <div class="container">
+      <h2>خدماتنا</h2>
+      <div class="grid">
+        <div class="card slide-in">
+          <div class="card-icon">📚</div>
+          <h3>تعليم القرآن</h3>
+          <p>حفظ وتجويد القرآن الكريم برواية قالون وحفص عن عاصم بإشراف علماء متخصصين</p>
+        </div>
+        <div class="card slide-in" style="animation-delay: 0.1s;">
+          <div class="card-icon">👨‍🏫</div>
+          <h3>دروس شرعية</h3>
+          <p>دروس علمية في العقيدة والفقه والحديث بطرق حديثة وميسّرة</p>
+        </div>
+        <div class="card slide-in" style="animation-delay: 0.2s;">
+          <div class="card-icon">🕒</div>
+          <h3>مواقيت الصلاة</h3>
+          <p>مواقيت دقيقة للصلوات المفروضة مع تذكيرات يومية</p>
+        </div>
+        <div class="card slide-in" style="animation-delay: 0.3s;">
+          <div class="card-icon">👥</div>
+          <h3>مجتمع ديني</h3>
+          <p>التواصل مع أهل العلم والإخوة المسلمين في بيئة آمنة وعلمية</p>
+        </div>
+        <div class="card slide-in" style="animation-delay: 0.4s;">
+          <div class="card-icon">🎯</div>
+          <h3>برامج متخصصة</h3>
+          <p>برامج متنوعة للأطفال والشباب والكبار على مدار العام</p>
+        </div>
+        <div class="card slide-in" style="animation-delay: 0.5s;">
+          <div class="card-icon">💻</div>
+          <h3>منصة رقمية</h3>
+          <p>متابعة الحلقات والدروس أونلاين من أي مكان وفي أي وقت</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Registration Section -->
+  <section id="register">
+    <div class="container">
+      <h2>التسجيل في الحلقات</h2>
+      <div class="form-section">
+        <form id="registrationForm" onsubmit="handleRegistration(event)">
+          <div class="grid">
+            <div class="form-group">
+              <label>اسم الطالب الثلاثي</label>
+              <input type="text" id="studentName" placeholder="أحمد محمد علي" required>
+            </div>
+            <div class="form-group">
+              <label>رقم الهاتف</label>
+              <input type="tel" id="studentPhone" placeholder="2189XXXXXXXX" required>
+            </div>
+            <div class="form-group">
+              <label>الرواية المطلوبة</label>
+              <select id="readType" required>
+                <option value="">اختر الرواية</option>
+                <option value="حفص عن عاصم">حفص عن عاصم</option>
+                <option value="قالون عن نافع">قالون عن نافع</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>الفترة المفضلة</label>
+              <select id="timeSlot" required>
+                <option value="">اختر الفترة</option>
+                <option value="بعد الفجر (5:30 - 6:30)">بعد الفجر (5:30 - 6:30)</option>
+                <option value="بعد العصر (4:00 - 5:30)">بعد العصر (4:00 - 5:30)</option>
+                <option value="بعد المغرب (6:30 - 8:00)">بعد المغرب (6:30 - 8:00)</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>ملاحظات إضافية</label>
+            <textarea id="notes" placeholder="أضف أي ملاحظات مهمة" rows="4"></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 20px;">✅ إرسال الطلب</button>
+          <div id="registrationMessage" class="message"></div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tasbih Section -->
+  <section id="tasbih">
+    <div class="container">
+      <h2>المسبحة الرقمية</h2>
+      <div style="text-align: center; margin-top: 50px;">
+        <p style="font-size: 1.2rem; color: var(--text-muted); margin-bottom: 20px;">عدد التسبيحات</p>
+        <div class="counter-display" id="counterDisplay">0</div>
+        <div style="margin-top: 40px; display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
+          <button class="btn btn-primary" onclick="incrementCounter()" style="font-size: 18px;">📿 سبح</button>
+          <button class="btn btn-secondary" onclick="incrementCounter(10)" style="font-size: 18px;">➕10</button>
+          <button class="btn btn-secondary" onclick="incrementCounter(100)" style="font-size: 18px;">➕100</button>
+          <button class="btn btn-secondary" onclick="resetCounter()" style="font-size: 18px;">🔄 إعادة تعيين</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Donations Section -->
+  <section id="donations">
+    <div class="container">
+      <h2>باب الصدقات الجارية</h2>
+      <div class="form-section">
+        <p style="text-align: center; margin-bottom: 30px; font-size: 1.1rem;">قال النبي ﷺ: "من بنى مسجداً لله بنى الله له في الجنة مثله"</p>
+        
+        <div class="stats">
+          <div class="stat-card">
+            <div class="stat-number" id="totalDonations">0</div>
+            <div class="stat-label">إجمالي الصدقات</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number" id="donationCount">0</div>
+            <div class="stat-label">عدد المتبرعين</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">🕌</div>
+            <div class="stat-label">صدقة جارية</div>
+          </div>
+        </div>
+
+        <div style="margin-top: 40px; background: var(--bg); padding: 30px; border-radius: 15px;">
+          <h3 style="color: var(--accent); margin-bottom: 20px;">بيانات البنك</h3>
+          <div style="text-align: center;">
+            <p style="margin-bottom: 15px; color: var(--text-muted);">مصرف الصحاري - فرع السواني</p>
+            <div style="background: var(--bg-lighter); padding: 20px; border-radius: 12px; margin-bottom: 15px;">
+              <p style="color: var(--text-muted); margin-bottom: 8px;">الحساب البنكي</p>
+              <p style="font-size: 1.3rem; color: var(--accent); font-weight: bold; word-break: break-all;">2008291848</p>
+              <button class="btn btn-secondary" onclick="copyText('2008291848')" style="margin-top: 12px; width: 100%;">📋 نسخ الرقم</button>
+            </div>
+            <div style="background: var(--bg-lighter); padding: 20px; border-radius: 12px;">
+              <p style="color: var(--text-muted); margin-bottom: 8px;">الرقم الدولي (IBAN)</p>
+              <p style="font-size: 1.1rem; color: var(--accent); font-weight: bold; word-break: break-all; direction: ltr;">LY17006004000002008291848</p>
+              <button class="btn btn-secondary" onclick="copyText('LY17006004000002008291848')" style="margin-top: 12px; width: 100%;">📋 نسخ الآيبان</button>
+            </div>
+          </div>
+        </div>
+
+        <div style="margin-top: 40px; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;">
+          <a href="tel:0913551819" class="btn btn-primary" style="text-align: center; text-decoration: none; display: flex; align-items: center; justify-content: center;">📞 اتصل الآن</a>
+          <button class="btn btn-primary" onclick="openDonationModal()" style="text-align: center;">💬 واتساب</button>
+          <button class="btn btn-primary" onclick="recordDonation()" style="text-align: center;">✅ تسجيل صدقة</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Prayer Times Section -->
+  <section style="background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);">
+    <div class="container">
+      <h2 style="color: white; background: none; -webkit-text-fill-color: unset; background-clip: unset;">مواقيت الصلاة</h2>
+      <div class="stats">
+        <div class="stat-card" style="background: rgba(255, 255, 255, 0.1); border: 2px solid rgba(255, 255, 255, 0.2);">
+          <div class="stat-label" style="font-size: 0.9rem; margin-bottom: 8px;">الفجر</div>
+          <div class="stat-number">05:30</div>
+        </div>
+        <div class="stat-card" style="background: rgba(255, 255, 255, 0.1); border: 2px solid rgba(255, 255, 255, 0.2);">
+          <div class="stat-label" style="font-size: 0.9rem; margin-bottom: 8px;">الظهر</div>
+          <div class="stat-number">12:45</div>
+        </div>
+        <div class="stat-card" style="background: rgba(255, 255, 255, 0.1); border: 2px solid rgba(255, 255, 255, 0.2);">
+          <div class="stat-label" style="font-size: 0.9rem; margin-bottom: 8px;">العصر</div>
+          <div class="stat-number">16:00</div>
+        </div>
+        <div class="stat-card" style="background: rgba(255, 255, 255, 0.1); border: 2px solid rgba(255, 255, 255, 0.2);">
+          <div class="stat-label" style="font-size: 0.9rem; margin-bottom: 8px;">المغرب</div>
+          <div class="stat-number">18:20</div>
+        </div>
+        <div class="stat-card" style="background: rgba(255, 255, 255, 0.1); border: 2px solid rgba(255, 255, 255, 0.2);">
+          <div class="stat-label" style="font-size: 0.9rem; margin-bottom: 8px;">العشاء</div>
+          <div class="stat-number">19:45</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p style="margin-bottom: 15px;">🕌 مسجد السنة - حي الصحابة</p>
+      <p style="font-size: 0.9rem;">طريق الدعوة الإسلامية • طرابلس • ليبيا</p>
+      <p style="margin-top: 20px; font-size: 0.85rem;">© 2026 صدقة جارية • جميع الحقوق محفوظة</p>
+      <a href="https://wa.me/218913551819" style="position: fixed; bottom: 30px; left: 30px; width: 60px; height: 60px; background: linear-gradient(135deg, #25d366 0%, #20c954 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 28px; box-shadow: 0 8px 24px rgba(37, 211, 102, 0.4); text-decoration: none; z-index: 50;" title="واتساب">💬</a>
+    </div>
+  </footer>
+
+  <!-- Login Modal -->
+  <div id="loginModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>🔐 دخول الشيخ</h2>
+        <button class="close-btn" onclick="closeLoginModal()">×</button>
+      </div>
+      <div class="form-group">
+        <label>البريد الإلكتروني</label>
+        <input type="email" id="loginEmail" placeholder="admin@masjid.test">
+      </div>
+      <div class="form-group">
+        <label>كلمة المرور</label>
+        <input type="password" id="loginPassword" placeholder="••••••••">
+      </div>
+      <button class="btn btn-primary" onclick="handleLogin()" style="width: 100%; margin-bottom: 10px;">دخول</button>
+      <button class="btn btn-secondary" onclick="closeLoginModal()" style="width: 100%;">إلغاء</button>
+    </div>
+  </div>
+
+  <!-- Admin Panel Modal -->
+  <div id="adminModal" class="modal">
+    <div class="modal-content" style="width: min(800px, 95%);">
+      <div class="modal-header">
+        <h2>📊 لوحة الإدارة</h2>
+        <button class="close-btn" onclick="closeAdminModal()">×</button>
+      </div>
+
+      <div style="margin-bottom: 40px;">
+        <h3 style="color: var(--accent); margin-bottom: 20px; font-size: 1.2rem;">📥 الطلبات الجديدة</h3>
+        <div id="requestsList" style="min-height: 100px; display: grid; gap: 10px;"></div>
+      </div>
+
+      <div style="margin-bottom: 40px;">
+        <h3 style="color: var(--accent); margin-bottom: 20px; font-size: 1.2rem;">👨‍🎓 الطلاب المسجلون</h3>
+        <div id="studentsList" style="min-height: 100px; display: grid; gap: 10px;"></div>
+      </div>
+
+      <div style="margin-bottom: 40px;">
+        <h3 style="color: var(--accent); margin-bottom: 20px; font-size: 1.2rem;">🤲 تسجيل صدقة</h3>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px;">
+          <div class="form-group" style="margin: 0;">
+            <label>اسم المتبرع</label>
+            <input type="text" id="donorName" placeholder="اسم الفاعل الخير">
+          </div>
+          <div class="form-group" style="margin: 0;">
+            <label>المبلغ</label>
+            <input type="number" id="donationAmount" placeholder="المبلغ" min="0">
+          </div>
+        </div>
+        <button class="btn btn-primary" onclick="handleAddDonation()" style="width: 100%; margin-top: 15px;">+ تسجيل صدقة</button>
+      </div>
+
+      <div>
+        <h3 style="color: var(--accent); margin-bottom: 20px; font-size: 1.2rem;">💰 قائمة الصدقات</h3>
+        <div id="donationsList" style="min-height: 100px; display: grid; gap: 10px;"></div>
+      </div>
+
+      <button class="btn btn-danger" onclick="closeAdminModal()" style="width: 100%; margin-top: 30px;">❌ خروج</button>
+    </div>
+  </div>
+
+  <!-- Donation Modal -->
+  <div id="donationModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>🤲 تبرع الآن</h2>
+        <button class="close-btn" onclick="closeDonationModal()">×</button>
+      </div>
+      <p style="text-align: center; margin-bottom: 25px; color: var(--text-muted);">ساهم في بناء صدقة جارية لمسجد السنة</p>
+      <a href="https://wa.me/218913551819?text=السلام%20عليكم%20أريد%20التبرع%20لمسجد%20السنة" class="btn btn-primary" style="width: 100%; text-align: center; text-decoration: none; display: block;">💬 واتساب</a>
+    </div>
+  </div>
+
+  <script>
+    // State Management
+    let appState = JSON.parse(localStorage.getItem('masjid_state') || 'null') || {
+      counter: 0,
+      requests: [],
+      students: [],
+      donations: [],
+      isAdmin: false
+    };
+
+    function saveState() {
+      localStorage.setItem('masjid_state', JSON.stringify(appState));
+    }
+
+    function updateUI() {
+      document.getElementById('counterDisplay').textContent = appState.counter;
+      document.getElementById('totalDonations').textContent = appState.donations.reduce((sum, d) => sum + (Number(d.amount) || 0), 0);
+      document.getElementById('donationCount').textContent = appState.donations.length;
+    }
+
+    function incrementCounter(amount = 1) {
+      appState.counter += amount;
+      saveState();
+      updateUI();
+    }
+
+    function resetCounter() {
+      if (confirm('هل أنت متأكد من إعادة تعيين العداد؟')) {
+        appState.counter = 0;
+        saveState();
+        updateUI();
+      }
+    }
+
+    function copyText(text) {
+      navigator.clipboard.writeText(text).then(() => {
+        alert('✅ تم نسخ: ' + text);
+      }).catch(() => {
+        alert('✅ ' + text);
+      });
+    }
+
+    function handleRegistration(e) {
+      e.preventDefault();
+      const name = document.getElementById('studentName').value.trim();
+      const phone = document.getElementById('studentPhone').value.trim();
+      const readType = document.getElementById('readType').value;
+      const timeSlot = document.getElementById('timeSlot').value;
+      const notes = document.getElementById('notes').value.trim();
+
+      if (!name || !phone || !readType || !timeSlot) {
+        showMessage('يرجى ملء جميع الحقول المطلوبة', 'registrationMessage', 'error');
+        return;
+      }
+
+      const request = { name, phone, readType, timeSlot, notes, timestamp: new Date().toISOString() };
+      appState.requests.push(request);
+      saveState();
+
+      document.getElementById('registrationForm').reset();
+      showMessage('✅ تم إرسال طلبك بنجاح، سيتم التواصل معك قريباً', 'registrationMessage', 'success');
+
+      const whatsappText = `🕌 طلب تسجيل - مسجد السنة\nالاسم: ${name}\nالهاتف: ${phone}\nالرواية: ${readType}\nالفترة: ${timeSlot}${notes ? '\nملاحظات: ' + notes : ''}`;
+      window.open(`https://wa.me/218913551819?text=${encodeURIComponent(whatsappText)}`, '_blank');
+    }
+
+    function handleLogin() {
+      const email = document.getElementById('loginEmail').value.trim();
+      const password = document.getElementById('loginPassword').value.trim();
+
+      if (email === 'admin@masjid.test' && password === 'admin123') {
+        appState.isAdmin = true;
+        saveState();
+        closeLoginModal();
+        renderAdminPanel();
+        document.getElementById('adminModal').classList.add('show');
+      } else {
+        alert('❌ البريد أو كلمة المرور غير صحيحة');
+      }
+    }
+
+    function renderAdminPanel() {
+      // Render Requests
+      const requestsList = document.getElementById('requestsList');
+      if (appState.requests.length === 0) {
+        requestsList.innerHTML = '<p style="color: var(--text-muted); text-align: center;">لا توجد طلبات جديدة</p>';
+      } else {
+        requestsList.innerHTML = appState.requests.map((req, i) => `
+          <div style="background: var(--bg); padding: 15px; border-radius: 10px; border-right: 4px solid var(--primary);">
+            <strong>${req.name}</strong> | ${req.phone}<br>
+            <small style="color: var(--text-muted);">الرواية: ${req.readType} | الفترة: ${req.timeSlot}</small>
+            <div style="margin-top: 10px;">
+              <button class="btn btn-primary" onclick="acceptRequest(${i})" style="padding: 8px 16px; font-size: 12px;">✅ قبول</button>
+              <button class="btn btn-danger" onclick="deleteRequest(${i})" style="padding: 8px 16px; font-size: 12px; background: var(--danger);">🗑️ حذف</button>
+            </div>
+          </div>
+        `).join('');
+      }
+
+      // Render Students
+      const studentsList = document.getElementById('studentsList');
+      if (appState.students.length === 0) {
+        studentsList.innerHTML = '<p style="color: var(--text-muted); text-align: center;">لا يوجد طلاب مسجلون</p>';
+      } else {
+        studentsList.innerHTML = appState.students.map((student) => `
+          <div style="background: var(--primary); padding: 12px; border-radius: 8px; color: white;">✅ ${student}</div>
+        `).join('');
+      }
+
+      // Render Donations
+      const donationsList = document.getElementById('donationsList');
+      if (appState.donations.length === 0) {
+        donationsList.innerHTML = '<p style="color: var(--text-muted); text-align: center;">لا توجد صدقات مسجلة</p>';
+      } else {
+        const total = appState.donations.reduce((sum, d) => sum + (Number(d.amount) || 0), 0);
+        donationsList.innerHTML = appState.donations.map((d) => `
+          <div style="background: var(--bg); padding: 12px; border-radius: 8px; border-right: 4px solid var(--accent);">
+            <strong>${d.name || 'فاعل خير'}</strong> - <span style="color: var(--accent);">د.ل ${d.amount}</span>
+          </div>
+        `).join('') + `<div style="background: var(--primary); padding: 15px; border-radius: 10px; text-align: center; margin-top: 15px; font-size: 1.2rem;color: white;">إجمالي: <strong>د.ل ${total}</strong></div>`;
+      }
+    }
+
+    function acceptRequest(index) {
+      const req = appState.requests[index];
+      appState.students.push(req.name);
+      appState.requests.splice(index, 1);
+      saveState();
+      renderAdminPanel();
+      updateUI();
+    }
+
+    function deleteRequest(index) {
+      appState.requests.splice(index, 1);
+      saveState();
+      renderAdminPanel();
+    }
+
+    function handleAddDonation() {
+      const name = document.getElementById('donorName').value.trim() || 'فاعل خير';
+      const amount = Number(document.getElementById('donationAmount').value || 0);
+
+      if (amount <= 0) {
+        alert('❌ أدخل مبلغاً صحيحاً');
+        return;
+      }
+
+      appState.donations.push({ name, amount, timestamp: new Date().toISOString() });
+      saveState();
+      document.getElementById('donorName').value = '';
+      document.getElementById('donationAmount').value = '';
+      renderAdminPanel();
+      updateUI();
+    }
+
+    function recordDonation() {
+      document.getElementById('adminModal').classList.contains('show') ? null : openLoginModal();
+    }
+
+    function showMessage(text, elementId, type) {
+      const el = document.getElementById(elementId);
+      el.textContent = text;
+      el.className = `message ${type}`;
+      setTimeout(() => { el.className = 'message'; }, 5000);
+    }
+
+    // Modal Functions
+    function openLoginModal() {
+      document.getElementById('loginModal').classList.add('show');
+    }
+
+    function closeLoginModal() {
+      document.getElementById('loginModal').classList.remove('show');
+    }
+
+    function closeAdminModal() {
+      document.getElementById('adminModal').classList.remove('show');
+      appState.isAdmin = false;
+      saveState();
+    }
+
+    function openDonationModal() {
+      document.getElementById('donationModal').classList.add('show');
+    }
+
+    function closeDonationModal() {
+      document.getElementById('donationModal').classList.remove('show');
+    }
+
+    // Initialize
+    updateUI();
+    window.addEventListener('load', () => {
+      document.querySelectorAll('.slide-in').forEach((el, i) => {
+        el.style.animationDelay = (i * 0.1) + 's';
+      });
+    });
+  </script>
+</body>
+</html>
