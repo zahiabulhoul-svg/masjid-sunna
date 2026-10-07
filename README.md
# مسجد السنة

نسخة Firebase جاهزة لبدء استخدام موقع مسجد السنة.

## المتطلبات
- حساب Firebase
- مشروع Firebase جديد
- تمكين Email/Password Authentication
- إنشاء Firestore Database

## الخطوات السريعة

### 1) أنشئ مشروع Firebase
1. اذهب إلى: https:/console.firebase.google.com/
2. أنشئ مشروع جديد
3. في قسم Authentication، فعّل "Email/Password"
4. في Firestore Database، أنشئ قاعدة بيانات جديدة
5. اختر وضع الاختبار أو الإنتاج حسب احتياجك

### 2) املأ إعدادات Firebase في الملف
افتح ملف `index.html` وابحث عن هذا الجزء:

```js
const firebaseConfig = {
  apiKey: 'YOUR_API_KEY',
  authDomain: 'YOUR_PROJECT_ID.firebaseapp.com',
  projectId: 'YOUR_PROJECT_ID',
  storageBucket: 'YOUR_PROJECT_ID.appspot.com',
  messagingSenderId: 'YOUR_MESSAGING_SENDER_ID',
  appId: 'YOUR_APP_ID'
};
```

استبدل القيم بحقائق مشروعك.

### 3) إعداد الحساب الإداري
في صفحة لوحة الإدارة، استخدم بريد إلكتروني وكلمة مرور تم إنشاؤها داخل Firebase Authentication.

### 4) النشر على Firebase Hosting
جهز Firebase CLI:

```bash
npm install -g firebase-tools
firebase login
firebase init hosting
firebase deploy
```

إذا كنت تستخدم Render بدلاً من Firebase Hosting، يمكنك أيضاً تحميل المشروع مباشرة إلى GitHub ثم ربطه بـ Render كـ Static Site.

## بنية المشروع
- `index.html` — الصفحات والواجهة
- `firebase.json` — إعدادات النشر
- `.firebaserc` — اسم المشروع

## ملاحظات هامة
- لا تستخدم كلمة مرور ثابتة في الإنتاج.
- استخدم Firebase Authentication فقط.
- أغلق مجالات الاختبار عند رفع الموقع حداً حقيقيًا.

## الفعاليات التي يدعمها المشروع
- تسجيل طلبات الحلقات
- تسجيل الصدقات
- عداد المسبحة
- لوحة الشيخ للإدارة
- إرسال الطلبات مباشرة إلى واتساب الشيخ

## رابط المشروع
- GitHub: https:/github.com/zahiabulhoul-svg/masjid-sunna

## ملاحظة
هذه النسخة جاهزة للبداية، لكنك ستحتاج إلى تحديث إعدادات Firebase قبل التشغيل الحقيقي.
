@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>مسجد السنة - حي الصحابة</title>
+  <meta name="description" content="مسجد السنة - حي الصحابة | تسجيل الحلقات والصدقات" />
+  <style>
+    :root {
+      --green-dark: #053b2c;
+      --green-medium: #0a6b4d;
+      --green-soft: #eaf7f1;
+      --gold: #d4af37;
+      --gold-dark: #8e6b16;
+      --bg: #faf7ef;
+      --white: #fff;
+      --text: #1c1c1c;
+      --border: #e8dcc0;
+      --danger: #c0392b;
+      --shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Tahoma, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      text-align: center;
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 0 12px 30px;
+    }
+
+    .hero {
+      background:
+        linear-gradient(rgba(2, 18, 12, 0.72), rgba(5, 59, 44, 0.86)),
+        url('https://images.unsplash.com/photo-1512632578888-169bbbc64f33?w=1200&q=60&auto=format&fit=crop') center/cover no-repeat;
+      color: #fff;
+      padding: 28px 12px 20px;
+    }
+
+    .hero-logo {
+      font-size: 62px;
+      margin-bottom: 5px;
+    }
+
+    .hero h1 {
+      margin: 5px 0;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      color: #f5df7d;
+    }
+
+    .badge {
+      display: inline-block;
+      background: #d4af37;
+      color: #1a1a1a;
+      padding: 8px 16px;
+      border-radius: 999px;
+      font-weight: bold;
+      font-size: 14px;
+      margin: 8px 0;
+    }
+
+    .box {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+      padding: 18px 14px;
+      margin: 16px 0;
+    }
+
+    .box h3 {
+      margin: 0 0 12px;
+      font-size: 1.2rem;
+      color: var(--green-dark);
+    }
+
+    input, select {
+      width: 100%;
+      padding: 12px 14px;
+      border-radius: 10px;
+      border: 1px solid #d0d7db;
+      font-size: 15px;
+      outline: none;
+      margin: 8px 0;
+      background: #fff;
+    }
+
+    input:focus, select:focus {
+      border-color: var(--gold);
+      box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.15);
+    }
+
+    button {
+      appearance: none;
+      border: none;
+      cursor: pointer;
+      border-radius: 999px;
+      padding: 12px 18px;
+      font-weight: bold;
+      font-size: 15px;
+      margin: 6px 6px 0;
+      transition: transform 0.2s ease, opacity 0.2s ease;
+    }
+
+    button:hover {
+      transform: translateY(-1px);
+    }
+
+    .btn-primary {
+      background: var(--green-medium);
+      color: #fff;
+    }
+
+    .btn-secondary {
+      background: #f3efdd;
+      color: #1d1d1d;
+      border: 1px solid #e8d9a8;
+    }
+
+    .btn-gold {
+      background: linear-gradient(135deg, #e9d279, #be8d1f);
+      color: #1a1a1a;
+    }
+
+    .btn-danger {
+      background: var(--danger);
+      color: #fff;
+    }
+
+    .success {
+      color: green;
+      font-weight: bold;
+      margin-top: 8px;
+      min-height: 24px;
+    }
+
+    .info {
+      background: #f5f2e6;
+      border: 1px solid #e7dca8;
+      border-radius: 12px;
+      padding: 10px;
+      margin: 10px 0;
+      font-weight: 600;
+    }
+
+    .acc {
+      background: #f3efdd;
+      border-radius: 10px;
+      padding: 10px;
+      font-weight: bold;
+      word-break: break-all;
+      margin: 8px 0;
+      direction: ltr;
+      display: inline-block;
+      width: 100%;
+      text-align: center;
+    }
+
+    .count {
+      font-weight: bold;
+      font-size: 46px;
+      color: var(--green-dark);
+      margin: 8px 0 6px;
+    }
+
+    .small {
+      font-size: 13px;
+      color: #585858;
+    }
+
+    .wa-float {
+      position: fixed;
+      bottom: 18px;
+      left: 18px;
+      width: 58px;
+      height: 58px;
+      background: #25d366;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 28px;
+      text-decoration: none;
+      box-shadow: 0 8px 20px rgba(37, 211, 102, 0.35);
+      z-index: 20;
+    }
+
+    .modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(1, 10, 8, 0.68);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      z-index: 99;
+    }
+
+    .modal.show {
+      display: flex;
+    }
+
+    .modal-box {
+      width: min(620px, 100%);
+      background: #fff;
+      border-radius: 16px;
+      padding: 18px 18px 12px;
+      box-shadow: var(--shadow);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+    }
+
+    .empty {
+      padding: 10px;
+      background: #f9f9f9;
+      border: 1px dashed #d7d7d7;
+      border-radius: 10px;
+      color: #666;
+    }
+
+    .admin-actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    @media (max-width: 600px) {
+      .hero { padding-top: 30px; }
+      .box { padding: 16px 12px; }
+      .count { font-size: 38px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="hero">
+    <div class="container">
+      <div class="hero-logo">🕌</div>
+      <h1>مسجد السنة</h1>
+      <div><span class="badge">📍 حي الصحابة – طريق الدعوة الإسلامية – طرابلس</span></div>
+      <div>﴿ إِنَّ هَٰذَا الْقُرْآنَ يَهْدِي لِلَّتِي هِيَ أَقْوَمُ ﴾</div>
+      <div class="small" style="margin-top:6px;">حفظ • تجويد • مراجعة • إجازة – قالون وحفص</div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="box">
+      <h3>📝 التسجيل في الحلقات</h3>
+      <input id="studentName" placeholder="اسم الطالب الثلاثي *" />
+      <input id="parentPhone" placeholder="هاتف ولي الأمر *" />
+      <select id="readType">
+        <option>حفص عن عاصم</option>
+        <option>قالون عن نافع</option>
+      </select>
+      <select id="timeSlot">
+        <option>بعد الفجر</option>
+        <option>بعد العصر</option>
+        <option>بعد المغرب</option>
+      </select>
+      <button class="btn-primary" onclick="submitRequest()">إرسال للشيخ واتساب ✅</button>
+      <div id="formMsg" class="success"></div>
+    </div>
+
+    <div class="box">
+      <h3>📿 المسبحة</h3>
+      <div id="counter" class="count">0</div>
+      <button class="btn-primary" onclick="incrementCounter()">سبح 📿</button>
+      <button class="btn-gold" onclick="resetCounter()">تصفير</button>
+    </div>
+
+    <div class="box">
+      <h3>🤲 باب الصدقات الجارية</h3>
+      <div class="info">قال ﷺ: « مَنْ بَنَى مَسْجِدًا لِلَّهِ بَنَى اللَّهُ لَهُ فِي الْجَنَّةِ مِثْلَهُ »</div>
+      <div>مصرف الصحاري - فرع السواني</div>
+      <div class="acc">2008291848</div>
+      <button class="btn-secondary" onclick="copyText('2008291848')">📋 نسخ الرقم</button>
+
+      <div class="acc" style="font-size:12px;">LY17006004000002008291848</div>
+      <button class="btn-secondary" onclick="copyText('LY17006004000002008291848')">📋 نسخ الآيبان</button>
+
+      <div class="acc">0913551819</div>
+      <a href="tel:0913551819"><button class="btn-primary">📞 اتصال</button></a>
+      <button class="btn-gold" onclick="openDonationWhatsApp()">💬 واتساب تبرع</button>
+    </div>
+
+    <div class="box">
+      <h3>🕋 مواقيت الصلاة</h3>
+      <div class="small">الفجر 05:30 | الظهر 12:45 | العصر 16:00 | المغرب 18:20 | العشاء 19:45</div>
+      <div class="admin-actions">
+        <button class="btn-secondary" onclick="openAdminModal()">🔐 دخول الشيخ</button>
+      </div>
+    </div>
+
+    <div style="padding:12px 0; color:#666; font-size:13px;">
+      🕌 مسجد السنة - حي الصحابة طريق الدعوة الإسلامية<br>
+      © 2026 صدقة جارية
+    </div>
+
+    <a href="https://wa.me/218913551819" class="wa-float" title="واتساب">💬</a>
+  </div>
+
+  <div id="loginModal" class="modal">
+    <div class="modal-box">
+      <h3>🕌 دخول الشيخ</h3>
+      <input id="adminEmail" type="email" placeholder="البريد الإلكتروني" />
+      <input id="adminPass" type="password" placeholder="كلمة المرور" />
+      <div class="admin-actions">
+        <button class="btn-primary" onclick="loginAdmin()">دخول</button>
+        <button class="btn-gold" onclick="closeAdminModal()">إلغاء</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="adminPanel" class="modal">
+    <div class="modal-box" style="max-width:900px;">
+      <div style="display:flex; justify-content:space-between; align-items:center; gap:12px;">
+        <h3 style="margin:0;">🕌 لوحة الشيخ - حي الصحابة</h3>
+        <button class="btn-danger" onclick="logoutAdmin()">❌ خروج</button>
+      </div>
+
+      <div class="grid" style="margin-top:16px;">
+        <div class="box" style="margin:0;">
+          <h3>📥 الطلبات الجديدة</h3>
+          <div id="requestsList" class="empty">لا يوجد</div>
+        </div>
+
+        <div class="box" style="margin:0;">
+          <h3>👨‍🎓 الطلاب</h3>
+          <div id="studentsList" class="empty">لا يوجد</div>
+        </div>
+      </div>
+
+      <div class="box" style="margin-top:16px;">
+        <h3>🤲 الصدقات</h3>
+        <input id="donorName" placeholder="اسم المتبرع" />
+        <input id="donationAmount" type="number" placeholder="المبلغ" min="0" />
+        <div class="admin-actions">
+          <button class="btn-primary" onclick="addDonation()">+ تسجيل صدقة</button>
+        </div>
+        <div id="donationsList" class="empty" style="margin-top:12px;">لا يوجد</div>
+      </div>
+    </div>
+  </div>
+
+  <script type="module">
+    import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js';
+    import { getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js';
+    import { getFirestore, addDoc, collection, deleteDoc, doc, onSnapshot, orderBy, query, serverTimestamp, setDoc } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js';
+
+    const firebaseConfig = {
+      apiKey: 'YOUR_API_KEY',
+      authDomain: 'YOUR_PROJECT_ID.firebaseapp.com',
+      projectId: 'YOUR_PROJECT_ID',
+      storageBucket: 'YOUR_PROJECT_ID.appspot.com',
+      messagingSenderId: 'YOUR_MESSAGING_SENDER_ID',
+      appId: 'YOUR_APP_ID'
+    };
+
+    const localFallback = {
+      counter: 0,
+      requests: [],
+      students: [],
+      donations: []
+    };
+
+    const FALLBACK_ADMIN_EMAIL = 'admin@masjid.test';
+    const FALLBACK_ADMIN_PASSWORD = 'admin123';
+
+    let app = null;
+    let auth = null;
+    let db = null;
+    let isFirebaseReady = false;
+    let state = JSON.parse(localStorage.getItem('masjid_sunna_state') || 'null') || structuredClone(localFallback);
+
+    function saveLocalState() {
+      localStorage.setItem('masjid_sunna_state', JSON.stringify(state));
+    }
+
+    function isConfigReady() {
+      return Object.values(firebaseConfig).every(value => value && !String(value).includes('YOUR_'));
+    }
+
+    function updateCounterView() {
+      document.getElementById('counter').textContent = state.counter;
+    }
+
+    function incrementCounter() {
+      state.counter += 1;
+      saveLocalState();
+      updateCounterView();
+    }
+
+    function resetCounter() {
+      state.counter = 0;
+      saveLocalState();
+      updateCounterView();
+    }
+
+    function showMessage(text, isError = false) {
+      const el = document.getElementById('formMsg');
+      el.textContent = text;
+      el.style.color = isError ? '#c0392b' : '#2e7d32';
+    }
+
+    function copyText(text) {
+      try {
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(text);
+        }
+      } catch (e) {
+        console.warn('Clipboard unavailable');
+      }
+      alert('✅ تم نسخ النص: ' + text);
+    }
+
+    function openDonationWhatsApp() {
+      const msg = encodeURIComponent('السلام عليكم ورحمة الله وبركاته، أريد التبرع لمسجد السنة حي الصحابة.');
+      window.open('https://wa.me/218913551819?text=' + msg, '_blank');
+    }
+
+    function openAdminModal() {
+      document.getElementById('loginModal').classList.add('show');
+    }
+
+    function closeAdminModal() {
+      document.getElementById('loginModal').classList.remove('show');
+    }
+
+    function openAdminPanel() {
+      document.getElementById('adminPanel').classList.add('show');
+    }
+
+    function closeAdminPanel() {
+      document.getElementById('adminPanel').classList.remove('show');
+    }
+
+    function renderLocalData() {
+      const requestsList = document.getElementById('requestsList');
+      const studentsList = document.getElementById('studentsList');
+      const donationsList = document.getElementById('donationsList');
+
+      if (state.requests.length === 0) {
+        requestsList.className = 'empty';
+        requestsList.textContent = 'لا يوجد';
+      } else {
+        requestsList.className = '';
+        requestsList.innerHTML = state.requests.map((req, index) => `
+          <div style="background:#faf7ef;padding:10px;border-radius:10px;margin:8px 0;">
+            <strong>${req.name}</strong><br>
+            ${req.phone}<br>
+            ${req.readType} - ${req.slot}<br>
+            <button class="btn-primary" onclick="window.acceptRequest(${index})">قبول</button>
+            <button class="btn-danger" onclick="window.deleteRequest(${index})">حذف</button>
+          </div>
+        `).join('');
+      }
+
+      if (state.students.length === 0) {
+        studentsList.className = 'empty';
+        studentsList.textContent = 'لا يوجد';
+      } else {
+        studentsList.className = '';
+        studentsList.innerHTML = state.students.map((name) => `
+          <div style="padding:8px;border-bottom:1px solid #eee;">✅ ${name}</div>
+        `).join('');
+      }
+
+      let total = 0;
+      if (state.donations.length === 0) {
+        donationsList.className = 'empty';
+        donationsList.textContent = 'لا يوجد';
+      } else {
+        donationsList.className = '';
+        donationsList.innerHTML = state.donations.map((d) => {
+          total += Number(d.amount || 0);
+          return `<div style="padding:8px;border-bottom:1px solid #eee;">${d.name} : ${d.amount}</div>`;
+        }).join('') + `<div style="font-weight:bold;margin-top:8px;">المجموع: ${total}</div>`;
+      }
+    }
+
+    window.acceptRequest = function(index) {
+      const req = state.requests[index];
+      if (!req) return;
+      state.students.push(req.name);
+      state.requests.splice(index, 1);
+      saveLocalState();
+      renderLocalData();
+    };
+
+    window.deleteRequest = function(index) {
+      state.requests.splice(index, 1);
+      saveLocalState();
+      renderLocalData();
+    };
+
+    function renderApp() {
+      updateCounterView();
+      renderLocalData();
+    }
+
+    function submitRequest() {
+      const name = document.getElementById('studentName').value.trim();
+      const phone = document.getElementById('parentPhone').value.trim();
+      const readType = document.getElementById('readType').value;
+      const slot = document.getElementById('timeSlot').value;
+
+      if (!name || !phone) {
+        showMessage('اكتب الاسم والهاتف أولاً', true);
+        return;
+      }
+
+      const request = {
+        name,
+        phone,
+        readType,
+        slot,
+        createdAt: new Date().toISOString()
+      };
+
+      if (isFirebaseReady && db && auth) {
+        addDoc(collection(db, 'requests'), {
+          ...request,
+          createdAt: serverTimestamp()
+        }).then(() => {
+          showMessage('✅ تم إرسال الطلب بنجاح', false);
+          document.getElementById('studentName').value = '';
+          document.getElementById('parentPhone').value = '';
+        }).catch((error) => {
+          console.error(error);
+          showMessage('حدثت مشكلة في الإرسال، تم حفظ البيانات محلياً', true);
+          state.requests.push(request);
+          saveLocalState();
+          renderLocalData();
+        });
+      } else {
+        state.requests.push(request);
+        saveLocalState();
+        renderLocalData();
+        showMessage('✅ تم إرسال الطلب بنجاح', false);
+        document.getElementById('studentName').value = '';
+        document.getElementById('parentPhone').value = '';
+      }
+
+      const text = encodeURIComponent(
+        '🕌 طلب تسجيل - مسجد السنة حي الصحابة\n' +
+        'الاسم: ' + name + '\n' +
+        'الهاتف: ' + phone + '\n' +
+        'الرواية: ' + readType + '\n' +
+        'الفترة: ' + slot
+      );
+
+      window.open('https://wa.me/218913551819?text=' + text, '_blank');
+    }
+
+    function loginAdmin() {
+      const email = document.getElementById('adminEmail').value.trim();
+      const password = document.getElementById('adminPass').value.trim();
+
+      if (isFirebaseReady && auth) {
+        signInWithEmailAndPassword(auth, email, password)
+          .then(() => {
+            closeAdminModal();
+            openAdminPanel();
+          })
+          .catch((error) => {
+            console.error(error);
+            alert('البريد أو كلمة المرور غير صحيحة');
+          });
+      } else {
+        if (email === FALLBACK_ADMIN_EMAIL && password === FALLBACK_ADMIN_PASSWORD) {
+          closeAdminModal();
+          openAdminPanel();
+          renderLocalData();
+        } else {
+          alert('البريد أو كلمة المرور غير صحيحة');
+        }
+      }
+    }
+
+    function logoutAdmin() {
+      if (isFirebaseReady && auth) {
+        signOut(auth).then(() => {
+          closeAdminPanel();
+        });
+      } else {
+        closeAdminPanel();
+      }
+    }
+
+    function addDonation() {
+      const name = document.getElementById('donorName').value.trim() || 'فاعل خير';
+      const amount = Number(document.getElementById('donationAmount').value || 0);
+
+      if (amount <= 0) {
+        alert('أدخل مبلغاً صحيحاً');
+        return;
+      }
+
+      const donation = { name, amount, createdAt: new Date().toISOString() };
+
+      if (isFirebaseReady && db && auth) {
+        addDoc(collection(db, 'donations'), {
+          ...donation,
+          createdAt: serverTimestamp()
+        }).catch((error) => {
+          console.error(error);
+          state.donations.push(donation);
+          saveLocalState();
+          renderLocalData();
+        });
+      } else {
+        state.donations.push(donation);
+        saveLocalState();
+      }
+
+      document.getElementById('donorName').value = '';
+      document.getElementById('donationAmount').value = '';
+      renderLocalData();
+    }
+
+    function initializeFirebase() {
+      try {
+        app = initializeApp(firebaseConfig);
+        auth = getAuth(app);
+        db = getFirestore(app);
+        isFirebaseReady = true;
+
+        onAuthStateChanged(auth, (user) => {
+          if (user) {
+            openAdminPanel();
+          }
+        });
+
+        const requestsQuery = query(collection(db, 'requests'), orderBy('createdAt', 'desc'));
+        onSnapshot(requestsQuery, (snapshot) => {
+          state.requests = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+          renderLocalData();
+        }, (error) => {
+          console.warn('Firestore requests stream disabled', error);
+        });
+
+        const studentsQuery = query(collection(db, 'students'), orderBy('createdAt', 'desc'));
+        onSnapshot(studentsQuery, (snapshot) => {
+          state.students = snapshot.docs.map(doc => doc.data().name || '');
+          renderLocalData();
+        }, (error) => {
+          console.warn('Firestore students stream disabled', error);
+        });
+
+        const donationsQuery = query(collection(db, 'donations'), orderBy('createdAt', 'desc'));
+        onSnapshot(donationsQuery, (snapshot) => {
+          state.donations = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+          renderLocalData();
+        }, (error) => {
+          console.warn('Firestore donations stream disabled', error);
+        });
+
+        console.log('Firebase initialized successfully');
+      } catch (error) {
+        console.warn('Firebase initialization failed.', error);
+        isFirebaseReady = false;
+      }
+    }
+
+    if (isConfigReady()) {
+      initializeFirebase();
+    } else {
+      console.warn('Firebase config is not set yet. Using local mode.');
+      state = JSON.parse(localStorage.getItem('masjid_sunna_state') || 'null') || structuredClone(localFallback);
+      renderApp();
+    }
+
+    renderApp();
+
+    window.addEventListener('load', function () {
+      setTimeout(() => {
+        const splash = document.getElementById('splash');
+        if (splash) splash.remove();
+      }, 1200);
+    });
+
+    window.submitRequest = submitRequest;
+    window.incrementCounter = incrementCounter;
+    window.resetCounter = resetCounter;
+    window.copyText = copyText;
+    window.openDonationWhatsApp = openDonationWhatsApp;
+    window.openAdminModal = openAdminModal;
+    window.closeAdminModal = closeAdminModal;
+    window.loginAdmin = loginAdmin;
+    window.logoutAdmin = logoutAdmin;
+    window.addDonation = addDonation;
+    window.acceptRequest = window.acceptRequest || function() {};
+    window.deleteRequest = window.deleteRequest || function() {};
+  </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
